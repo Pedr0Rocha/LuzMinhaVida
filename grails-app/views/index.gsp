@@ -107,11 +107,11 @@
 			<p>Bem Vindo ao site do restaurante Luz da Minha Vida!</p>
 
 			<div id="controller-list" role="navigation">
-				<h2>Controllers:</h2>
+				<h2>CADASTROS:</h2>
 				<ul>
-					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
-					</g:each>
+					<li class="controller"><g:link controller="cliente">"CADASTRO CLIENTE"</g:link></li>
+					<li class="controller"><g:link controller="funcionario">"CADASTRO FUNCIONARIO"</g:link></li>
+					<li class="controller"><g:link controller="produtos">"CADASTRO PRODUTO"</g:link></li>
 				</ul>
 			</div>
 		</div>
