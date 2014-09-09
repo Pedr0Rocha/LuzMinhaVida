@@ -13,7 +13,7 @@ class LoginController {
 		if(user){
 			session.user = user
 			flash.message = "Bem vindo ${user.nome}!"
-			redirect(uri : "/")
+			redirect(uri : "/index")
 			
 		}else{
 		flash.message = "Desculpe, tente novamente."

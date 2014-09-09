@@ -111,17 +111,19 @@
 		
 		 <div class="nav" role="navigation">
             <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+                <li><a class="home" href="${createLink(uri: '/index')}"><g:message code="default.home.label"/></a></li>
                 <li><g:link class="list" controller = "login" action="logout"><g:message code="Logout" args="[entityName]" /></g:link></li>
             </ul>
         </div>
-		
+		<g:if test="${flash.message}">
+				<div class="message" role="status">${flash.message}</div>
+                </g:if>
 		<div id="page-body" role="main">
 			<h1>Luz da Minha vida</h1>
 			<p>Bem Vindo ao site do restaurante Luz da Minha Vida!</p>
 
 			<div id="controller-list" role="navigation">
-				<h2>Controllers:</h2>
+				<h2>Gerenciadores:</h2>
 				<ul>
 					<li class="controller"><g:link controller="cliente">GERENCIAR CLIENTE</g:link></li>
 					<li class="controller"><g:link controller="funcionario">GERENCIAR FUNCIONARIO</g:link></li>
