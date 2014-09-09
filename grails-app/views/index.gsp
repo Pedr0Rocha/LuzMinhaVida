@@ -121,11 +121,11 @@
 			<p>Bem Vindo ao site do restaurante Luz da Minha Vida!</p>
 
 			<div id="controller-list" role="navigation">
-				<h2>CADASTROS:</h2>
+				<h2>Controllers:</h2>
 				<ul>
-					<li class="controller"><g:link controller="cliente">CADASTRO CLIENTE</g:link></li>
-					<li class="controller"><g:link controller="funcionario">CADASTRO FUNCIONARIO</g:link></li>
-					<li class="controller"><g:link controller="produtos">CADASTRO PRODUTO</g:link></li>
+					<li class="controller"><g:link controller="cliente">GERENCIAR CLIENTE</g:link></li>
+					<li class="controller"><g:link controller="funcionario">GERENCIAR FUNCIONARIO</g:link></li>
+					<li class="controller"><g:link controller="produtos">GERENCIAR PRODUTO</g:link></li>
 				</ul>
 			</div>
 		</div>
