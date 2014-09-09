@@ -77,23 +77,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${funcionarioInstance?.login}">
-				<li class="fieldcontain">
-					<span id="login-label" class="property-label"><g:message code="funcionario.login.label" default="Login" /></span>
-					
-						<span class="property-value" aria-labelledby="login-label"><g:fieldValue bean="${funcionarioInstance}" field="login"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${funcionarioInstance?.password}">
-				<li class="fieldcontain">
-					<span id="password-label" class="property-label"><g:message code="funcionario.password.label" default="Password" /></span>
-					
-						<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${funcionarioInstance}" field="password"/></span>
-					
-				</li>
-				</g:if>
 			
 			</ol>
 			<g:form url="[resource:funcionarioInstance, action:'delete']" method="DELETE">
