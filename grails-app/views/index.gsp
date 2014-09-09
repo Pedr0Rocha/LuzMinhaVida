@@ -78,6 +78,12 @@
 					margin-top: 0;
 				}
 			}
+			
+			#box-login{	
+				float:left;
+				width:65px;
+				color:red;
+			}
 		</style>
 	</head>
 	<body>
@@ -102,6 +108,14 @@
 				</g:each>
 			</ul>
 		</div>-->
+		
+		 <div class="nav" role="navigation">
+            <ul>
+                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+                <li><g:link class="list" controller = "login" action="logout"><g:message code="Logout" args="[entityName]" /></g:link></li>
+            </ul>
+        </div>
+		
 		<div id="page-body" role="main">
 			<h1>Luz da Minha vida</h1>
 			<p>Bem Vindo ao site do restaurante Luz da Minha Vida!</p>
@@ -109,9 +123,9 @@
 			<div id="controller-list" role="navigation">
 				<h2>CADASTROS:</h2>
 				<ul>
-					<li class="controller"><g:link controller="cliente">"CADASTRO CLIENTE"</g:link></li>
-					<li class="controller"><g:link controller="funcionario">"CADASTRO FUNCIONARIO"</g:link></li>
-					<li class="controller"><g:link controller="produtos">"CADASTRO PRODUTO"</g:link></li>
+					<li class="controller"><g:link controller="cliente">CADASTRO CLIENTE</g:link></li>
+					<li class="controller"><g:link controller="funcionario">CADASTRO FUNCIONARIO</g:link></li>
+					<li class="controller"><g:link controller="produtos">CADASTRO PRODUTO</g:link></li>
 				</ul>
 			</div>
 		</div>
