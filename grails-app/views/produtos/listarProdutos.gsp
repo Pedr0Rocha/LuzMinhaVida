@@ -1,4 +1,3 @@
-
 <%@ page import="luzminhavida.Produtos" %>
 <!DOCTYPE html>
 <html>
@@ -12,9 +11,9 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+                                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
                                 <li><g:link class="search" action="search"><g:message code="default.search.label" args="[entityName]" /></g:link></li>
-                                
 			</ul>
 		</div>
 		<div id="list-produtos" class="content scaffold-list" role="main">
@@ -26,18 +25,18 @@
 			<thead>
 					<tr>
 					
-						<g:sortableColumn property="nomeProduto" title="${message(code: 'produtos.nomeProduto.label', default: 'Nome Produto')}" />
+						<th>${message(code: 'produtos.nomeProduto.label', default: 'Nome Produto')}</th>
 					
-						<g:sortableColumn property="descricao" title="${message(code: 'produtos.descricao.label', default: 'Descricao')}" />
+						<th>${message(code: 'produtos.descricao.label', default: 'Descricao')} </th>                                             
 					
-						<g:sortableColumn property="valor" title="${message(code: 'produtos.valor.label', default: 'Valor')}" />
-					
-						<th><g:message code="produtos.categoria.label" default="Categoria" /></th>
+						<th>${message(code: 'produtos.valor.label', default: 'Valor')}</th>
+                                                
+                                                <th><g:message code="produtos.categoria.label" default="Categoria" /></th>
 					
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${produtosInstanceList}" status="i" var="produtosInstance">
+				<g:each in="${oProduto}" status="i" var="produtosInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${produtosInstance.id}">${fieldValue(bean: produtosInstance, field: "nomeProduto")}</g:link></td>

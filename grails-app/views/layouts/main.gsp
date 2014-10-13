@@ -17,7 +17,7 @@
 		<g:layoutHead/>
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://localhost:8080/LuzMinhaVida/index"><asset:image src="Pesqueiro.jpg" style="width:930px;height:300px;"/></a></div>
+		<div id="grailsLogo" role="banner"><a href="http://localhost:8080/LuzMinhaVida"><asset:image src="Pesqueiro.jpg" style="width:930px;height:300px;"/></a></div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>

@@ -20,21 +20,21 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: produtosInstance, field: 'categoria', 'error')} required">
-	<label for="categoria">
-		<g:message code="produtos.categoria.label" default="Categoria" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="categoria" required="" value="${produtosInstance?.categoria}"/>
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: produtosInstance, field: 'valor', 'error')} required">
 	<label for="valor">
 		<g:message code="produtos.valor.label" default="Valor" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="valor" pattern="${produtosInstance.constraints.valor.matches}" required="" value="${produtosInstance?.valor}"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: produtosInstance, field: 'categoria', 'error')} required">
+	<label for="categoria">
+		<g:message code="produtos.categoria.label" default="Categoria" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="categoria" name="categoria.id" from="${luzminhavida.CategoriaProdutos.list()}" optionKey="id" optionValue="name" required="" value="${produtosInstance?.categoria?.id}" class="many-to-one"/>
 
 </div>
 

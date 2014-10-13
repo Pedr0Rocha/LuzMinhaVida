@@ -14,6 +14,7 @@
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+                                <li><g:link class="search" action="search"><g:message code="default.search.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
 		<div id="show-produtos" class="content scaffold-show" role="main">
@@ -41,20 +42,19 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${produtosInstance?.categoria}">
-				<li class="fieldcontain">
-					<span id="categoria-label" class="property-label"><g:message code="produtos.categoria.label" default="Categoria" /></span>
-					
-						<span class="property-value" aria-labelledby="categoria-label"><g:fieldValue bean="${produtosInstance}" field="categoria"/></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${produtosInstance?.valor}">
 				<li class="fieldcontain">
 					<span id="valor-label" class="property-label"><g:message code="produtos.valor.label" default="Valor" /></span>
 					
 						<span class="property-value" aria-labelledby="valor-label"><g:fieldValue bean="${produtosInstance}" field="valor"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${produtosInstance?.categoria}">
+				<li class="fieldcontain">
+					<span id="categoria-label" class="property-label"><g:message code="produtos.categoria.label" default="Categoria" /></span>
+						<span class="property-value" aria-labelledby="categoria-label">${produtosInstance?.categoria?.name}</span>
 					
 				</li>
 				</g:if>
