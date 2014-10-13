@@ -16,6 +16,9 @@ local.properties
 .settings/
 .loadpath
 
+target/
+target-eclipse/
+
 # External tool builders
 .externalToolBuilders/
 
