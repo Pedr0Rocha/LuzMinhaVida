@@ -9,7 +9,7 @@ class Usuario {
     static constraints = {
 		login(blank:false, minSize:3, unique:true)
 		password(blank:false, minSize:3, password:true)
-		permissao(blank:true)
+		permissao(nullable:true)
     }
     
     static mapping = {

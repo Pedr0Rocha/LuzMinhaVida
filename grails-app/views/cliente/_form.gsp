@@ -2,6 +2,33 @@
 
 
 
+<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'login', 'error')} required">
+	<label for="login">
+		<g:message code="cliente.login.label" default="Login" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="login" required="" value="${clienteInstance?.login}"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'password', 'error')} required">
+	<label for="password">
+		<g:message code="cliente.password.label" default="Password" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field type="password" name="password" required="" value="${clienteInstance?.password}"/>
+
+</div>
+
+<!--<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'permissao', 'error')} required">
+	<label for="permissao">
+		<g:message code="cliente.permissao.label" default="Permissao" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="permissao" name="permissao.id" from="${luzminhavida.Permiss.list()}" optionKey="id" required="" value="${clienteInstance?.permissao?.id}" class="many-to-one"/>
+
+</div>-->
+
 <div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'nome', 'error')} required">
 	<label for="nome">
 		<g:message code="cliente.nome.label" default="Nome" />
