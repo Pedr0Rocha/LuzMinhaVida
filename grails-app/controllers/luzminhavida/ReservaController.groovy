@@ -20,7 +20,7 @@ class ReservaController {
             redirect(controller:"Login", action:"login")
             return false
         }
-        def user = Usuario.findByLoginAndPassword(session.user.login, session.user.password);
+        def user = Usuario.findByLoginAndPassword(session.user.login, session.user.password)
         
         if(!user) {
             redirect(controller:"Login", action:"login")
@@ -32,11 +32,32 @@ class ReservaController {
         }
     }
 
+    
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Reserva.list(params), model:[reservaInstanceCount: Reserva.count()]
     }
 
+    def listarHistorico(){
+        def user = Usuario.findByLoginAndPassword(session.user.login, session.user.password)
+        //def produtos = Produtos.findAllByNomeProduto(params.nomeProduto)
+        def reservas = Reserva.findAllByCliente(user)
+        
+        if (!reservas) {
+            flash.message = "Você não possui reservas!"  
+            redirect(action: "create")
+            //[message: 'owners.not.found']
+        }else {
+        
+            if (reservas.size() > 1) {
+                [oReserva : reservas]
+                // render view: 'listarHistorico', model: [oReserva : reservas]
+            } else {
+                redirect action: 'show', id: reservas[0].id
+            }      
+        }
+    }
+    
     def show(Reserva reservaInstance) {
         respond reservaInstance
     }
