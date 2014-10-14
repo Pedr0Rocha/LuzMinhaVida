@@ -8,11 +8,15 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class ClienteController {
-    def beforeInterceptor = [action:this.&auth]
+    //def beforeInterceptor = [action:this.&auth]
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        if(!session.user) {
+            redirect(action:"create")
+            return false
+        }
         def user = Usuario.findByLoginAndPassword(session.user.login, session.user.password);
         if (user instanceof Cliente){
             redirect(action:"show", id: user.id)
