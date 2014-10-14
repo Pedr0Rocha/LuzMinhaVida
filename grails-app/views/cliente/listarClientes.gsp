@@ -1,4 +1,3 @@
-
 <%@ page import="luzminhavida.Cliente" %>
 <!DOCTYPE html>
 <html>
@@ -25,20 +24,20 @@
 			<thead>
 					<tr>
 					
-						<g:sortableColumn property="nome" title="${message(code: 'cliente.nome.label', default: 'Nome')}" />
+                                            <th>${message(code: 'cliente.nome.label', default: 'Nome')}/>
 					
-						<g:sortableColumn property="CPF" title="${message(code: 'cliente.CPF.label', default: 'CPF')}" />
+                                            <th>${message(code: 'cliente.CPF.label', default: 'CPF')}/>
 					
-						<g:sortableColumn property="telefone" title="${message(code: 'cliente.telefone.label', default: 'Telefone')}" />
+                                            <th>${message(code: 'cliente.telefone.label', default: 'Telefone')}/>
 					
-						<g:sortableColumn property="endereco" title="${message(code: 'cliente.endereco.label', default: 'Endereco')}" />
+                                            <th>${message(code: 'cliente.endereco.label', default: 'Endereco')}/>
 					
-						<g:sortableColumn property="CEP" title="${message(code: 'cliente.CEP.label', default: 'CEP')}" />
+                                            <th>${message(code: 'cliente.CEP.label', default: 'CEP')}/>
 					
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${clienteInstanceList}" status="i" var="clienteInstance">
+				<g:each in="${oCliente}" status="i" var="clienteInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${clienteInstance.id}">${fieldValue(bean: clienteInstance, field: "nome")}</g:link></td>
