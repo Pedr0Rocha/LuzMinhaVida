@@ -3,7 +3,7 @@ package luzminhavida
 class Reserva {
     
     Boolean ativa = true
-    Boolean itemPesca = false
+    Integer itemPesca
     Date date = new Date()
     Integer numeroPessoas
     Cliente cliente
@@ -12,5 +12,6 @@ class Reserva {
         date min: new Date()-1
         cliente nullable:true
         numeroPessoas min:1
+        itemPesca min:0
     }
 }

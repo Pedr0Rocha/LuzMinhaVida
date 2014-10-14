@@ -29,21 +29,21 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'itemPesca', 'error')} required">
+	<label for="itemPesca">
+		<g:message code="reserva.itemPesca.label" default="Item Pesca" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="itemPesca" type="number" min="0" value="${reservaInstance.itemPesca}" required=""/>
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'ativa', 'error')} ">
 	<label for="ativa">
 		<g:message code="reserva.ativa.label" default="Ativa" />
 		
 	</label>
 	<g:checkBox name="ativa" value="${reservaInstance?.ativa}" />
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'itemPesca', 'error')} ">
-	<label for="itemPesca">
-		<g:message code="reserva.itemPesca.label" default="Item Pesca" />
-		
-	</label>
-	<g:checkBox name="itemPesca" value="${reservaInstance?.itemPesca}" />
 
 </div>
 

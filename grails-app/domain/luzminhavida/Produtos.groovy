@@ -5,7 +5,7 @@ class Produtos {
 	String descricao
 	String valor
 	CategoriaProdutos categoria
-	//Boolean mostrarNoCardapio
+	Boolean mostrarNoCardapio = true
 	
 	static constraints = {
 		nomeProduto(blank: false)

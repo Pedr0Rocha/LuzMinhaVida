@@ -30,9 +30,9 @@
 					
 						<g:sortableColumn property="numeroPessoas" title="${message(code: 'reserva.numeroPessoas.label', default: 'Numero Pessoas')}" />
 					
-						<g:sortableColumn property="ativa" title="${message(code: 'reserva.ativa.label', default: 'Ativa')}" />
-					
 						<g:sortableColumn property="itemPesca" title="${message(code: 'reserva.itemPesca.label', default: 'Item Pesca')}" />
+					
+						<g:sortableColumn property="ativa" title="${message(code: 'reserva.ativa.label', default: 'Ativa')}" />
 					
 					</tr>
 				</thead>
@@ -46,9 +46,9 @@
 					
 						<td>${fieldValue(bean: reservaInstance, field: "numeroPessoas")}</td>
 					
-						<td><g:formatBoolean boolean="${reservaInstance.ativa}" /></td>
+						<td>${fieldValue(bean: reservaInstance, field: "itemPesca")}</td>
 					
-						<td><g:formatBoolean boolean="${reservaInstance.itemPesca}" /></td>
+						<td><g:formatBoolean boolean="${reservaInstance.ativa}" /></td>
 					
 					</tr>
 				</g:each>

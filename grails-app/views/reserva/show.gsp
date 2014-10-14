@@ -50,20 +50,20 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${reservaInstance?.itemPesca}">
+				<li class="fieldcontain">
+					<span id="itemPesca-label" class="property-label"><g:message code="reserva.itemPesca.label" default="Item Pesca" /></span>
+					
+						<span class="property-value" aria-labelledby="itemPesca-label"><g:fieldValue bean="${reservaInstance}" field="itemPesca"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${reservaInstance?.ativa}">
 				<li class="fieldcontain">
 					<span id="ativa-label" class="property-label"><g:message code="reserva.ativa.label" default="Ativa" /></span>
 					
 						<span class="property-value" aria-labelledby="ativa-label"><g:formatBoolean boolean="${reservaInstance?.ativa}" /></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${reservaInstance?.itemPesca}">
-				<li class="fieldcontain">
-					<span id="itemPesca-label" class="property-label"><g:message code="reserva.itemPesca.label" default="Item Pesca" /></span>
-					
-						<span class="property-value" aria-labelledby="itemPesca-label"><g:formatBoolean boolean="${reservaInstance?.itemPesca}" /></span>
 					
 				</li>
 				</g:if>

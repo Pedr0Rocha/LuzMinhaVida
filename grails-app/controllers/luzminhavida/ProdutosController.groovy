@@ -22,6 +22,21 @@ class ProdutosController {
         }
     }
     
+    def cardap() {
+        
+        def categorias = CategoriaProdutos.findAll()
+        def listaz = []
+        
+        for (CategoriaProdutos cat in categorias) {
+            def superProd = Produtos.findAllByCategoriaAndMostrarNoCardapio(cat, true)
+            if(superProd.size() > 0){
+                listaz.add(superProd)
+            }
+        }
+        println("Matriz " + listaz.size())
+        println(categorias.size())
+        render view: 'cardapio', model: [aMatrizCategoria : listaz]
+    }
    
     
     def search () {

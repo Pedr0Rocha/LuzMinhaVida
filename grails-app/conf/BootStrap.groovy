@@ -1,5 +1,6 @@
 
 
+import luzminhavida.Aval
 import luzminhavida.Permiss
 import luzminhavida.Cliente
 import luzminhavida.CategoriaProdutos
@@ -16,9 +17,14 @@ class BootStrap {
         for (String type in ['Cliente','Funcionario','Administrador', 'Gerente']) {
             new Permiss(nome: type).save(failOnError: true)
         }
+		
+		for (String type in ['1 Estrelas','2 Estrelas','3 Estrelas', '4 Estrelas', '5 Estrelas']) {
+			new Aval(estrelas: type).save(failOnError: true)
+		}
+		
         
-           def clienteTeste2 = new Cliente(nome: "Jose", endereco: "Rua Exemplo n01", telefone: "32531733",
-            CEP: "12345678", CPF: "123456589012", login:"cli2", password:"toris", permissao: Permiss.findByNome('Cliente')).save(failOnError: true)
+        def clienteTeste2 = new Cliente(nome: "Jose", endereco: "Rua Exemplo n01", telefone: "32531733",
+			CEP: "12345678", CPF: "123456589012", login:"cli2", password:"toris", permissao: Permiss.findByNome('Cliente')).save(failOnError: true)
 
 		
         

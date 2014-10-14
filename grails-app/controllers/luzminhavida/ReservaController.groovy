@@ -58,11 +58,13 @@ class ReservaController {
         }
         def user = Usuario.findByLoginAndPassword(session.user.login, session.user.password);
        
-        def reservas = Reserva.findAllByDate(reservaInstance.date)
-        int numPessoas = reservaInstance.numeroPessoas
+        def reservas      = Reserva.findAllByDate(reservaInstance.date)
+        int numPessoas    = reservaInstance.numeroPessoas
+        int numItensPesca = reservaInstance.itemPesca 
         for (Reserva res in reservas){
             if (res.ativa){
-                numPessoas += res.numeroPessoas
+                numPessoas    += res.numeroPessoas
+                numItensPesca += res.itemPesca
             }
             if(res.cliente.id == user.id){
                 flash.message = "Você já possui reserva para esta Data"
@@ -73,6 +75,10 @@ class ReservaController {
         
         if (numPessoas > Constantes.MAXPESSOAS){
             flash.message = "Limite de reservas esgotados para esta data"
+            respond reservaInstance.errors, view:'create'
+            return
+        }else if (numItensPesca > Constantes.ITEMSPESCA){
+            flash.message = "Limite de Itens de Pesca esgotados para esta data"
             respond reservaInstance.errors, view:'create'
             return
         }
@@ -106,17 +112,23 @@ class ReservaController {
             respond reservaInstance.errors, view:'edit'
             return
         }
-        def reservas = Reserva.findAllByDate(reservaInstance.date)
-        int numPessoas = reservaInstance.numeroPessoas
+        def reservas      = Reserva.findAllByDate(reservaInstance.date)
+        int numPessoas    = reservaInstance.numeroPessoas
+        int numItensPesca = reservaInstance.itemPesca
         for (Reserva res in reservas){
             if (res.ativa && res.id != reservaInstance.id){
-                numPessoas += res.numeroPessoas
+                numPessoas    += res.numeroPessoas
+                numItensPesca += res.itemPesca
             }
         }
         
         if (numPessoas > Constantes.MAXPESSOAS){
             flash.message = "Limite de reservas esgotados para esta data"
-            respond reservaInstance.errors, view:'create'
+            respond reservaInstance.errors, view:'edit'
+            return
+        }else if(numItensPesca > Constantes.ITEMSPESCA) {
+            flash.message = "Limite de Itens de Pesca esgotados para esta data"
+            respond reservaInstance.errors, view:'edit'
             return
         }
         reservaInstance.save flush:true

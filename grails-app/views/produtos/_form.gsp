@@ -34,7 +34,16 @@
 		<g:message code="produtos.categoria.label" default="Categoria" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="categoria" name="categoria.id" from="${luzminhavida.CategoriaProdutos.list()}" optionKey="id" optionValue="name" required="" value="${produtosInstance?.categoria?.id}" class="many-to-one"/>
+	<g:select id="categoria" name="categoria.id" from="${luzminhavida.CategoriaProdutos.list()}" optionKey="id" required="" value="${produtosInstance?.categoria?.id}" class="many-to-one"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: produtosInstance, field: 'mostrarNoCardapio', 'error')} ">
+	<label for="mostrarNoCardapio">
+		<g:message code="produtos.mostrarNoCardapio.label" default="Mostrar No Cardapio" />
+		
+	</label>
+	<g:checkBox name="mostrarNoCardapio" value="${produtosInstance?.mostrarNoCardapio}" />
 
 </div>
 
