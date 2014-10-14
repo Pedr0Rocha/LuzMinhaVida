@@ -7,10 +7,11 @@ class FuncionarioController {
     static scaffold = Funcionario
 	
     def auth() {
-	if(!session.user) {
-            redirect(controller:"Login", action:"login")
-            return false
-        }
+        if(!session.user) {
+			redirect(controller:"Login", action:"login")
+			return false
+		}
+	
         def user = Usuario.findByLoginAndPassword(session.user.login, session.user.password);
         
         if(!user) {

@@ -129,6 +129,8 @@
                     <li class="controller"><g:link controller="cliente">CADASTRO CLIENTE</g:link></li>
                     <li class="controller"><g:link controller="funcionario">CADASTRO FUNCIONARIO</g:link></li>
                     <li class="controller"><g:link controller="produtos">CADASTRO PRODUTO</g:link></li>
+                    <li class="controller"><g:link controller="reserva">CADASTRO RESERVA</g:link></li>
+
                     </ul>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 
+
 import luzminhavida.Permiss
 import luzminhavida.Cliente
 import luzminhavida.CategoriaProdutos
@@ -7,6 +8,9 @@ import luzminhavida.Usuario
 import luzminhavida.Produtos
 
 class BootStrap {
+    
+    public static final int MAXPESSOAS = 100
+
 
     def init = { servletContext ->
         for (String type in ['Cliente','Funcionario','Administrador', 'Gerente']) {

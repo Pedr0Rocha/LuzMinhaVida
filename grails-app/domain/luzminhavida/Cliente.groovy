@@ -6,6 +6,8 @@ class Cliente extends Usuario {
 	String telefone
 	String CEP
 	String CPF
+        
+      
 	
     static constraints = {
 		nome (blank:false, size:3..30, matches:"[a-zA-Z ']+")

@@ -11,4 +11,8 @@ class Usuario {
 		password(blank:false, minSize:3, password:true)
 		permissao(blank:true)
     }
+    
+    static mapping = {
+        password column: "password"   
+    }
 }
