@@ -44,18 +44,26 @@ class ProdutosController {
             return
         }
         
-        def produtos = Produtos.findAllByNomeProduto(params.nomeProduto)
+        //def produtos = Produtos.findAllByNomeProduto(params.nomeProduto)
+        def prod2 = Produtos.findAll()
+        def listProd = []
+       
+        for (Produtos pp in prod2){
+            if(pp?.nomeProduto?.contains(params.nomeProduto)){
+                listProd.add(pp)
+            }
+        }
         
-        if (!produtos) {
+        if (!listProd) {
             flash.message = "Produto Não Encontrado!"  
             return //[message: 'owners.not.found']
         }
         
-        if (produtos.size() > 1) {
+        if (listProd.size() > 1) {
             //[oProduto : produtos]
-            render view: 'listarProdutos', model: [oProduto : produtos]
+            render view: 'listarProdutos', model: [oProduto : listProd]
         } else {
-            redirect action: 'show', id: produtos[0].id
+            redirect action: 'show', id: listProd[0].id
         }         
     }
     
