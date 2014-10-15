@@ -21,12 +21,21 @@ class CardapioController {
             redirect action: 'show', id: produtos[0].id
         }         
     }
-    
-    def renderTabela(String tabela){
-        def produtos = Produtos.findAllByNomeProduto(params.nomeProduto)
-        def prodCategoria = Produtos.findAllByCategoria(params.nomeProduto)
-
-
-        render view: tabela, model: [oProduto: produtos]
+      
+    def cardap() {
+        
+        def categorias = CategoriaProdutos.findAll()
+        def listaz = []
+        
+        for (CategoriaProdutos cat in categorias) {
+            def superProd = Produtos.findAllByCategoriaAndMostrarNoCardapio(cat, true)
+            if(superProd.size() > 0){
+                listaz.add(superProd)
+            }
+        }
+        render view: 'cardapio', model: [aMatrizCategoria : listaz]
     }
+    
+    
+
 }

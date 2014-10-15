@@ -131,8 +131,10 @@
                     <li class="controller"><g:link controller="produtos">CADASTRO PRODUTO</g:link></li>
                     <li class="controller"><g:link controller="reserva">CADASTRO RESERVA</g:link></li>
                     <li class="controller"><g:link controller="comentarios">AVALIAR</g:link></li>
-                    <li class="controller"><g:link controller="produtos" action="cardap">CARDAPIO</g:link></li>
+                    <li class="controller"><g:link controller="cardapio" action="cardap">CARDAPIO</g:link></li>
                     <li class="controller"><g:link controller="reserva" action="listarHistorico">HISTÓRICO</g:link></li>
+                    <li class="controller"><g:link controller="produtos" action="filtro">FILTRO</g:link></li>
+
 
                     </ul>
                 </div>

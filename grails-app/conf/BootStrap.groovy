@@ -46,6 +46,16 @@ class BootStrap {
         def produtoTeste = new Produtos(nomeProduto: "Porcao de batata",
             descricao: "Porcao de batata frita com queijo e bacon", valor: "15,50", categoria: CategoriaProdutos.findByName('Porções')).save(failOnError: true)
 
+         def produtoTeste2 = new Produtos(nomeProduto: "Saco de batata",
+            descricao: "Porcao de batata frita com queijo e bacon", valor: "15", categoria: CategoriaProdutos.findByName('Refeições')).save(failOnError: true)
+
+         def produtoTeste3 = new Produtos(nomeProduto: "VALOR IGUA",
+            descricao: "Porcao de batata frita com queijo e bacon", valor: "15,50", categoria: CategoriaProdutos.findByName('Bebidas')).save(failOnError: true)
+
+         def produtoTeste4 = new Produtos(nomeProduto: "Cat igual",
+            descricao: "Porcao de batata frita com queijo e bacon", valor: "14", categoria: CategoriaProdutos.findByName('Porções')).save(failOnError: true)
+
+        
     }
     def destroy = {
     }
