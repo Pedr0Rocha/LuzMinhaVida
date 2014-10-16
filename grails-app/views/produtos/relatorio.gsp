@@ -8,9 +8,10 @@
     <body>
         <h1>Relatorio de Visualizações de Produto</h1>
         <h3>De: ${datai} Até: ${dataf}<h3>
-        <h1></h1>
-        <h1></h1>
-        <h3>Produtos Visualizados</h3>
+                <h3>Total de Visualizações: ${visuTotal}</h3>
+                <h1></h1>
+                <h1></h1>
+                <h3>Produtos Visualizados</h3>
                 <table style="width:50%">
                     <thead>
                         <tr>
@@ -22,9 +23,6 @@
                             <th>${message(code: 'produtos.valor.label', default: 'Valor')}</th>
 
                             <th>${message(code: 'produtos.valor.label', default: 'Numero de Visualizações')}</th>
-
-
-
 
                         </tr>
                     </thead>

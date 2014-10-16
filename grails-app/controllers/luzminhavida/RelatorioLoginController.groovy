@@ -106,57 +106,25 @@ class RelatorioLoginController {
         if (!request.post) {
             return
         }        
+           
+        // filtro por tipo usuario
+        def acessosUsuarios  = RelatorioLogin.findAll()
+        def listaPorTipoUser = []
         
-        def todosProdutos = Produtos.findAll()
-        def listaPorNome = []
-        
-        
-        //filtro por nomes
-        for (Produtos prod in todosProdutos){
-            if(prod?.nomeProduto?.contains(params?.nomeProduto)){
-                listaPorNome.add(prod)
-                //  println("ADD LISTA POR NOME")
-                
-            }
-        }
-        println(listaPorNome.size() + " << lista por nome size")
-        
-        // filtro por valor
-        
-        def listaPorValor = []
-        
-        if (!params.valor.equals("")){
-            for (Produtos prod in listaPorNome){
-                if(prod?.valor?.equals(params.valor)){
-                    listaPorValor.add(prod)
-                    // println("ADD LISTA POR VALOR")
-                }
-            }
-        } else {
-            listaPorValor = listaPorNome
-        }
-        
-        println(listaPorValor.size() + " << lista por valor size")
-        
-        // filtro por categoria
-
-        def listaPorCategoria = []
-        if (params?.categoria?.id != '-1'){            
-            for (Produtos prod in listaPorValor){
-                if(prod?.categoria?.id.toString().equals(params?.categoria?.id.toString())){
-                    listaPorCategoria.add(prod)
+         
+        if (params?.permiss?.id != '-1'){            
+            for (RelatorioLogin rel in acessosUsuarios){
+                if(rel?.usuario?.permissao?.id.toString().equals(params?.permiss?.id.toString())){
+                    listaPorTipoUser.add(rel)
                     //println("ADD LISTA POR CATEGORIA") 
                 }
             }
         } else {
-            listaPorCategoria = listaPorValor
+            listaPorTipoUser = acessosUsuarios
         }
-           
-        println(listaPorCategoria.size() + " << lista por categoria size")
         
-        // filtro por data
-        def acessosProd      = RelatorioProdutos.findAll()
-        def listaAcessosProd = []
+        //filtro por data
+        def listaPorData = []
         if(params.datai.after(new Date()) || params.dataf.after(new Date())){
             flash.message = "Datas não podem serem maiores que a data atual!"  
             return //[message: 'owners.not.found']
@@ -164,25 +132,13 @@ class RelatorioLoginController {
             flash.message = "Data Inicial não pode ser maior que final"  
             return //[message: 'owners.not.found']
         }else{
-            for(RelatorioProdutos rel in acessosProd){
+            for(RelatorioLogin rel in listaPorTipoUser){
                 if(rel.data.after(params.datai-1) && rel.data.before(params.dataf+1)){
-                    listaAcessosProd.add(rel)
+                    listaPorData.add(rel)
                 }            
             }
         }
-        
-        // checa os acessos do produto filtrado
-        def finalList = []
-        for(RelatorioProdutos rel in listaAcessosProd){
-            for(Produtos prod in listaPorCategoria){
-                if(rel.produto.equals(prod)){
-                    finalList.add(rel)
-                }
-            }
-        }
-        
-        println(listaAcessosProd.size()+ " << listaAcessosProd size>")
-        println(finalList.size()+ " << final size>")
+        def finalList = listaPorData
         // println(params.datai.toString() + "datai <     dataf > " + params.dataf.toString())
         relatorio(finalList, params.datai, params.dataf)
     }
@@ -190,12 +146,12 @@ class RelatorioLoginController {
     def  relatorio(List finalList, Date data1, Date data2){
         def superList = [:]
         
-        for(RelatorioProdutos rel in finalList){
-            if(!superList[rel.produto]){
-                superList[rel.produto] = 1
+        for(RelatorioLogin rel in finalList){
+            if(!superList[rel.usuario]){
+                superList[rel.usuario] = 1
                 //println(superList[rel.produto]+"<superList>"+rel.produto.nomeProduto)
             }else{
-                superList[rel.produto] += 1
+                superList[rel.usuario] += 1
                 //println(superList[rel.produto]+"<superList>"+rel.produto.nomeProduto)
             }
         }
@@ -203,7 +159,7 @@ class RelatorioLoginController {
         int visu = 0
         
         for(elem in superList.sort{-it.value}){
-            println (elem.key.nomeProduto + " <key><value> "+ elem.value)
+            println (elem.key.nome + " <key><value> "+ elem.value)
             visu += elem.value;
         }
         
@@ -211,18 +167,32 @@ class RelatorioLoginController {
         for(elem in superList.sort{-it.value}){
             listaCadaVisu.add((int)((elem.value/visu) * 100))
         }
-       
-        def listaClientes = [:]
-        for(RelatorioProdutos rel in finalList)
-        if(!listaClientes[rel.cliente]){
-            listaClientes[rel.cliente] = 1
-        } else {
-            listaClientes[rel.cliente] += 1 
+        def listaSemana = [:]
+        Date dataPadrao = new Date("11/10/2014")
+        for(i in 0..7){
+            listaSemana[(dataPadrao+i).format("EEEE")] = 0
+        }        
+        for(rel in finalList){
+            if(!listaSemana[rel.data.format("EEEE")]){
+                listaSemana[rel.data.format("EEEE")] = 1
+                //println(superList[rel.produto]+"<superList>"+rel.produto.nomeProduto)
+            }else{
+                listaSemana[rel.data.format("EEEE")] += 1
+                //println(superList[rel.produto]+"<superList>"+rel.produto.nomeProduto)
+            }
         }
+        def percentSemana = []
         
-        render view: 'relatorio', model: [listaTotal : superList.sort{-it.value}, totalVisu: listaCadaVisu,
+        for(dia in listaSemana){
+            if(visu!=0){
+                percentSemana.add((int)((dia.value/visu) * 100))
+            }else{
+                percentSemana.add(0)
+            }
+        }
+        render view: 'relatorio', model: [listaTotal : superList.sort{-it.value}, totalVisu: visu, cadaVisu:listaCadaVisu,
             datai : data1.format("dd/MM/yyyy"), dataf : data2.format("dd/MM/yyyy"),
-            listaCli : listaClientes.sort{-it.value}]
+            listaFinal: finalList, semana:listaSemana, psemana: percentSemana, ]
      
     }
 }

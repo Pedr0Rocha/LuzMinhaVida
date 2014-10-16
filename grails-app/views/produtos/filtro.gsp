@@ -24,7 +24,7 @@
 
             <ul>
                 <div id = 'overall'>
-                    <g:form controller="Produtos" action="filtro">
+                    <g:form controller="Produtos" action="filtro" target="_blank">
 
                         <h1>Filtros:</h1>
 
@@ -66,20 +66,19 @@
                             <g:message code="Categoria" default="Categoria:" />
                             <g:select id="categoria" name="categoria.id" from="${luzminhavida.CategoriaProdutos.list()}" optionKey="id" optionValue="name" required="" value="${produtosInstance?.categoria?.id}" class="many-to-one" noSelection="['-1':'Todos']"/>
                         </label>
-                        <input value="Procurar" type="submit"/>
-                    </g:form>
+                    </div>
 
-                </div>
+                </ul>
+            </div>
+            <h1></h1>
+            <div class="nav" role="navigation">
+                <ul>
+                    <input class="list" value="Gerar Relatório de Produtos" type="submit"/>
+          <!-- <li><a class="list" href="${createLink(uri: '/produtos/filtro')}" ><g:message code="Relatorio de Produtos"/></a></li> -->
 
-            </ul>
-        </div>
-        <h1></h1>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="list" href="${createLink(uri: '/relatorioProdutos')}" target="_blank"><g:message code="Relatorio de Produtos"/></a></li> 
-              <!-- <li><a class="list" href="${createLink(uri: '/produtos/filtro')}" ><g:message code="Relatorio de Produtos"/></a></li> -->
+                </ul>
+            </div>
+        </g:form>
 
-            </ul>
-        </div>
     </body>
 </html>

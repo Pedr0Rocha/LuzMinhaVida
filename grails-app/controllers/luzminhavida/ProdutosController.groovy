@@ -23,11 +23,19 @@ class ProdutosController {
     }
     
     def show(Produtos produtosInstance){
-        RelatorioProdutos relProd = new RelatorioProdutos()
-        relProd.cliente = Usuario.findByLoginAndPassword(session.user.login, session.user.password)
-        if (relProd.cliente instanceof Cliente){
+        if(!session.user) {
+            redirect(controller:"Login", action:"login")
+            return false
+        }
+        
+        def user = Usuario.findByLoginAndPassword(session.user.login, session.user.password)
+        
+        if(user instanceof Cliente){
+            RelatorioProdutos relProd = new RelatorioProdutos()
+            relProd.cliente = user         
             relProd.produto = produtosInstance
             relProd.save flush:true
+           
         }
         respond produtosInstance
     }
@@ -164,7 +172,7 @@ class ProdutosController {
     
     def  relatorio(List finalList, Date data1, Date data2){
         def superList = [:]
-        
+                
         for(RelatorioProdutos rel in finalList){
             if(!superList[rel.produto]){
                 superList[rel.produto] = 1
@@ -197,29 +205,8 @@ class ProdutosController {
         
         render view: 'relatorio', model: [listaTotal : superList.sort{-it.value}, totalVisu: listaCadaVisu,
             datai : data1.format("dd/MM/yyyy"), dataf : data2.format("dd/MM/yyyy"),
-            listaCli : listaClientes.sort{-it.value}]
+            listaCli : listaClientes.sort{-it.value}, visuTotal: visu]
      
-    }
-    
-    void busca(){
-        def prod2 = Produtos.findAll()
-        def listProd = []
-       
-        for (Produtos pp in prod2){
-            if(pp?.nomeProduto?.contains(params.nomeProduto)){
-                listProd.add(pp)
-            }
-        }
-        
-        if (!listProd) {
-            render("nenhum")
-        } else {
-            if (listProd.size() > 1) {
-                render("encontrado muitos")
-            } else {
-                render("encontrado 1")
-            }
-        }
     }
 }
 
