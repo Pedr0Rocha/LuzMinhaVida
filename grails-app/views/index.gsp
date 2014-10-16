@@ -133,8 +133,10 @@
                     <li class="controller"><g:link controller="reserva">CADASTRO RESERVA</g:link></li>
                     <li class="controller"><g:link controller="comentarios" action="listarComentarios">AVALIAR</g:link></li>
                     <li class="controller"><g:link controller="cardapio" action="cardap">CARDAPIO</g:link></li>
-                    <li class="controller"><g:link controller="reserva" action="listarHistorico">HISTÓRICO</g:link></li>
-                    <li class="controller"><g:link controller="produtos" action="filtro">FILTRO</g:link></li>
+                    <li class="controller"><g:link controller="reserva" action="listarHistorico">HISTÓRICO DE RESERVAS</g:link></li>
+                    <li class="controller"><g:link controller="produtos" action="filtro">RELATORIO DE PRODUTOS</g:link></li>
+                    <li class="controller"><g:link controller="relatorioLogin" action="filtro">RELATORIO DE ACESSOS</g:link></li>
+                    <li class="controller"><g:link controller="comentarios" action="filtro">RELATORIO DE AVALIAÇÕES</g:link></li>
 
 
                 </ul>

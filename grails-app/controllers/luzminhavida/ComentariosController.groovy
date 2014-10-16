@@ -19,14 +19,7 @@ class ComentariosController {
         }
         def user = Usuario.findByLoginAndPassword(session.user.login, session.user.password);
         
-        if(!user) {
-            redirect(controller:"Login", action:"login")
-            return false
-        }else if(!user.permissao.nome.equals("Cliente")){
-            flash.message = "Voce não tem permissão para acessar esta área"
-            redirect(uri: "/" )
-            return false
-        }
+     
     }
     
     def index(Integer max) {
