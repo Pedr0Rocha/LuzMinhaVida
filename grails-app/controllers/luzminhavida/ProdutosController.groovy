@@ -247,6 +247,25 @@ class ProdutosController {
             listaCli : listaClientes.sort{-it.value}, visuTotal: visu]
      
     }
+    
+    void busca(){
+        def prod2 = Produtos.findAll()
+        def listProd = []
+        for (Produtos pp in prod2){
+            if(pp?.nomeProduto?.contains(params.nomeProduto)){
+                listProd.add(pp)
+            }
+        }
+        if (!listProd) {
+            render("nenhum")
+        } else {
+            if (listProd.size() > 1) {
+                render("encontrado muitos")
+            } else {
+                render("encontrado 1")
+            }
+        }
+    }
 }
 
     
