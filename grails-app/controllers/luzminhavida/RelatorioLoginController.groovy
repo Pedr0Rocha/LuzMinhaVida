@@ -4,7 +4,7 @@ package luzminhavida
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
-import grails.validation.Validateable
+
 
 @Transactional(readOnly = true)
 class RelatorioLoginController {
@@ -144,7 +144,7 @@ class RelatorioLoginController {
         relatorio(finalList, params.datai, params.dataf)
     }
     
-    @Validateable
+  
     def  relatorio(List finalList, Date data1, Date data2){
         def superList = [:]
         

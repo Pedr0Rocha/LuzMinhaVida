@@ -1,6 +1,5 @@
 package luzminhavida
 
-import grails.validation.Validateable
 
 class ProdutosController {
     def beforeInterceptor = [action:this.&auth]
@@ -172,7 +171,7 @@ class ProdutosController {
         relatorio(finalList, params.datai, params.dataf)
     }
     
-    @Validateable
+
     def  relatorio(List finalList, Date data1, Date data2){
         def superList = [:]
                 
