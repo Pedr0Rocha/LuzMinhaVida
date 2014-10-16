@@ -191,4 +191,21 @@ class ReservaController {
             '*'{ render status: NOT_FOUND }
         }
     }
+       
+    void buscaCliente(){
+        def cli2 = Cliente.findAll()
+        def listCli = []
+       
+        for (Cliente cc in cli2){
+            if(cc?.nomeCliente?.contains(params.nomeCliente)){
+                listCli.add(cc)
+            }
+        }
+        
+        if (!listCli) {
+            render("nenhum")
+        } else {
+            render("encontrado")
+        }
+    }
 }
