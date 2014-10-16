@@ -23,4 +23,13 @@ class FuncionarioController {
             return false
         }
     }
+    
+    void cadastrar(Funcionario funcionarioInstance){
+        if (funcionarioInstance == null || funcionarioInstance.hasErrors()) {
+            render "erro"
+            return
+        }
+        funcionarioInstance.save flush:true
+        render "salvo"
+    }
 }
