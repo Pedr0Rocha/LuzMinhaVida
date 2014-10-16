@@ -11,9 +11,8 @@
 		<a href="#list-cliente" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/index')}"><g:message code="default.home.label"/></a></li>
+				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-                                <li><g:link class="search" action="search"><g:message code="default.search.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
 		<div id="list-cliente" class="content scaffold-list" role="main">
@@ -25,15 +24,17 @@
 			<thead>
 					<tr>
 					
-						<g:sortableColumn property="nome" title="${message(code: 'cliente.nome.label', default: 'Nome')}" />
+						<g:sortableColumn property="login" title="${message(code: 'cliente.login.label', default: 'Login')}" />
 					
-						<!-- <g:sortableColumn property="CPF" title="${message(code: 'cliente.CPF.label', default: 'CPF')}" /> -->
+						<g:sortableColumn property="password" title="${message(code: 'cliente.password.label', default: 'Password')}" />
+					
+						<th><g:message code="cliente.permissao.label" default="Permissao" /></th>
+					
+						<g:sortableColumn property="nome" title="${message(code: 'cliente.nome.label', default: 'Nome')}" />
 					
 						<g:sortableColumn property="telefone" title="${message(code: 'cliente.telefone.label', default: 'Telefone')}" />
 					
 						<g:sortableColumn property="endereco" title="${message(code: 'cliente.endereco.label', default: 'Endereco')}" />
-					
-						<g:sortableColumn property="CEP" title="${message(code: 'cliente.CEP.label', default: 'CEP')}" />
 					
 					</tr>
 				</thead>
@@ -41,15 +42,17 @@
 				<g:each in="${clienteInstanceList}" status="i" var="clienteInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${clienteInstance.id}">${fieldValue(bean: clienteInstance, field: "nome")}</g:link></td>
+						<td><g:link action="show" id="${clienteInstance.id}">${fieldValue(bean: clienteInstance, field: "login")}</g:link></td>
 					
-						<!-- <td>${fieldValue(bean: clienteInstance, field: "CPF")}</td> -->
+						<td>${fieldValue(bean: clienteInstance, field: "password")}</td>
+					
+						<td>${fieldValue(bean: clienteInstance, field: "permissao")}</td>
+					
+						<td>${fieldValue(bean: clienteInstance, field: "nome")}</td>
 					
 						<td>${fieldValue(bean: clienteInstance, field: "telefone")}</td>
 					
 						<td>${fieldValue(bean: clienteInstance, field: "endereco")}</td>
-					
-						<td>${fieldValue(bean: clienteInstance, field: "CEP")}</td>
 					
 					</tr>
 				</g:each>

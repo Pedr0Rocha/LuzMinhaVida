@@ -23,20 +23,38 @@
 			</g:if>
 			<ol class="property-list cliente">
 			
+				<g:if test="${clienteInstance?.login}">
+				<li class="fieldcontain">
+					<span id="login-label" class="property-label"><g:message code="cliente.login.label" default="Login" /></span>
+					
+						<span class="property-value" aria-labelledby="login-label"><g:fieldValue bean="${clienteInstance}" field="login"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${clienteInstance?.password}">
+				<li class="fieldcontain">
+					<span id="password-label" class="property-label"><g:message code="cliente.password.label" default="Password" /></span>
+					
+						<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${clienteInstance}" field="password"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${clienteInstance?.permissao}">
+				<li class="fieldcontain">
+					<span id="permissao-label" class="property-label"><g:message code="cliente.permissao.label" default="Permissao" /></span>
+					
+						<span class="property-value" aria-labelledby="permissao-label"><g:link controller="permiss" action="show" id="${clienteInstance?.permissao?.id}">${clienteInstance?.permissao?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${clienteInstance?.nome}">
 				<li class="fieldcontain">
 					<span id="nome-label" class="property-label"><g:message code="cliente.nome.label" default="Nome" /></span>
 					
 						<span class="property-value" aria-labelledby="nome-label"><g:fieldValue bean="${clienteInstance}" field="nome"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${clienteInstance?.CPF}">
-				<li class="fieldcontain">
-					<span id="CPF-label" class="property-label"><g:message code="cliente.CPF.label" default="CPF" /></span>
-					
-						<span class="property-value" aria-labelledby="CPF-label"><g:fieldValue bean="${clienteInstance}" field="CPF"/></span>
 					
 				</li>
 				</g:if>

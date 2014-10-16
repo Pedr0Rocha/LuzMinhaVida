@@ -20,14 +20,14 @@
 
 </div>
 
-<!--<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'permissao', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'permissao', 'error')} ">
 	<label for="permissao">
 		<g:message code="cliente.permissao.label" default="Permissao" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:select id="permissao" name="permissao.id" from="${luzminhavida.Permiss.list()}" optionKey="id" required="" value="${clienteInstance?.permissao?.id}" class="many-to-one"/>
+	<g:select id="permissao" name="permissao.id" from="${luzminhavida.Permiss.list()}" optionKey="id" value="${clienteInstance?.permissao?.id}" class="many-to-one" noSelection="['null': '']"/>
 
-</div>-->
+</div>
 
 <div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'nome', 'error')} required">
 	<label for="nome">
@@ -37,15 +37,6 @@
 	<g:textField name="nome" maxlength="30" pattern="${clienteInstance.constraints.nome.matches}" required="" value="${clienteInstance?.nome}"/>
 
 </div>
-
-<!--<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'CPF', 'error')} required">
-	<label for="CPF">
-		<g:message code="cliente.CPF.label" default="CPF" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="CPF" maxlength="12" required="" value="${clienteInstance?.CPF}"/>
-
-</div>-->
 
 <div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'telefone', 'error')} required">
 	<label for="telefone">
