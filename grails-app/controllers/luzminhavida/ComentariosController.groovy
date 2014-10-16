@@ -33,6 +33,25 @@ class ComentariosController {
         params.max = Math.min(max ?: 10, 100)
         respond Comentarios.list(params), model:[comentariosInstanceCount: Comentarios.count()]
     }
+    
+    def listarComentarios(){
+        def user = Usuario.findByLoginAndPassword(session.user.login, session.user.password)
+        def comentarios = Comentarios.findAllByCliente(user)
+        
+        if (!comentarios) {
+            flash.message = "Você não possui comentarios!"  
+            redirect(action: "create")
+            //[message: 'owners.not.found']
+        }else {
+        
+            if (comentarios.size() > 1) {
+                [oComentarios : comentarios]
+            } else {
+                redirect action: 'show', id: comentarios[0].id
+            }      
+        }
+    }
+    
 
     def show(Comentarios comentariosInstance) {
         respond comentariosInstance
@@ -54,7 +73,6 @@ class ComentariosController {
             return
         }
         def user = Usuario.findByLoginAndPassword(session.user.login, session.user.password);
-        
         
         comentariosInstance.cliente = user
         comentariosInstance.save flush:true
