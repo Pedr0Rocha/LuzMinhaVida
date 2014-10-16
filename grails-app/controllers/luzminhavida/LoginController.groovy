@@ -34,5 +34,14 @@ class LoginController {
         }
         redirect(action:"login")
     }
+    
+    void verifica(Usuario usuarioInstance){
+        if (usuarioInstance == null || usuarioInstance.hasErrors()) {
+            render "rejeitado"
+            return
+        }
+        usuarioInstance.save flush:true
+        render "aceito"
+    }
 
 }
