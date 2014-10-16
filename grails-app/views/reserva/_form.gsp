@@ -4,19 +4,10 @@
 
 <div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'date', 'error')} required">
 	<label for="date">
-		<g:message code="reserva.date.label" default="Date" />
+		<g:message code="reserva.date.label" default="Data" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:datePicker name="date" precision="day"  value="${reservaInstance?.date}"  />
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'cliente', 'error')} ">
-	<label for="cliente">
-		<g:message code="reserva.cliente.label" default="Cliente" />
-		
-	</label>
-	<g:select id="cliente" name="cliente.id" from="${luzminhavida.Cliente.list()}" optionKey="id" value="${reservaInstance?.cliente?.id}" class="many-to-one" noSelection="['null': '']"/>
 
 </div>
 
@@ -38,12 +29,4 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'ativa', 'error')} ">
-	<label for="ativa">
-		<g:message code="reserva.ativa.label" default="Ativa" />
-		
-	</label>
-	<g:checkBox name="ativa" value="${reservaInstance?.ativa}" />
-
-</div>
 

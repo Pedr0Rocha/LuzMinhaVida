@@ -8,6 +8,7 @@ class Comentarios {
     Date data = new Date()
 
     static constraints = {
+        cliente nullable: true
     	comentarios blank:false, maxSize:300
     }
 }

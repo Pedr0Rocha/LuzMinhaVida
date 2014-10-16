@@ -38,13 +38,13 @@
 				<g:each in="${comentariosInstanceList}" status="i" var="comentariosInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${comentariosInstance.id}">${fieldValue(bean: comentariosInstance, field: "comentarios")}</g:link></td>
+						<td>${fieldValue(bean: comentariosInstance, field: "comentarios")}</td>
 					
-						<td>${fieldValue(bean: comentariosInstance, field: "cliente")}</td>
+						<td>${fieldValue(bean: comentariosInstance.cliente, field: "nome")}</td>
 					
-						<td><g:formatDate date="${comentariosInstance.data}" /></td>
+						<td><g:formatDate date="${comentariosInstance.data}" format="dd/MM/yyyy" /></td>
 					
-						<td>${fieldValue(bean: comentariosInstance, field: "estrelas")}</td>
+						<td>${fieldValue(bean: comentariosInstance.estrelas, field: "estrelas")}</td>
 					
 					</tr>
 				</g:each>

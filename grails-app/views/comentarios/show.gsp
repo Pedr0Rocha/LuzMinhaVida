@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="cliente-label" class="property-label"><g:message code="comentarios.cliente.label" default="Cliente" /></span>
 					
-						<span class="property-value" aria-labelledby="cliente-label"><g:link controller="cliente" action="show" id="${comentariosInstance?.cliente?.id}">${comentariosInstance?.cliente?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="cliente-label"><g:link controller="cliente" action="show" id="${comentariosInstance?.cliente?.id}">${comentariosInstance?.cliente?.nome}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -45,7 +45,7 @@
 				<li class="fieldcontain">
 					<span id="data-label" class="property-label"><g:message code="comentarios.data.label" default="Data" /></span>
 					
-						<span class="property-value" aria-labelledby="data-label"><g:formatDate date="${comentariosInstance?.data}" /></span>
+						<span class="property-value" aria-labelledby="data-label"><g:formatDate date="${comentariosInstance?.data}" format="dd/MM/yyyy" /></span>
 					
 				</li>
 				</g:if>
@@ -54,7 +54,7 @@
 				<li class="fieldcontain">
 					<span id="estrelas-label" class="property-label"><g:message code="comentarios.estrelas.label" default="Estrelas" /></span>
 					
-						<span class="property-value" aria-labelledby="estrelas-label"><g:link controller="aval" action="show" id="${comentariosInstance?.estrelas?.id}">${comentariosInstance?.estrelas?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="estrelas-label">${comentariosInstance?.estrelas.estrelas}</span>
 					
 				</li>
 				</g:if>

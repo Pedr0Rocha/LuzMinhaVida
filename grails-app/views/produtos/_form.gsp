@@ -34,7 +34,7 @@
 		<g:message code="produtos.categoria.label" default="Categoria" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="categoria" name="categoria.id" from="${luzminhavida.CategoriaProdutos.list()}" optionKey="id" required="" value="${produtosInstance?.categoria?.id}" class="many-to-one"/>
+	<g:select id="categoria" name="categoria.name" from="${luzminhavida.CategoriaProdutos.list()}" optionKey="id" optionValue="name" required="" value="${produtosInstance?.categoria?.name}" class="many-to-one"/>
 
 </div>
 

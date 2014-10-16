@@ -25,9 +25,9 @@
 			
 				<g:if test="${reservaInstance?.date}">
 				<li class="fieldcontain">
-					<span id="date-label" class="property-label"><g:message code="reserva.date.label" default="Date" /></span>
+					<span id="date-label" class="property-label"><g:message code="reserva.date.label" default="Data" /></span>
 					
-						<span class="property-value" aria-labelledby="date-label"><g:formatDate date="${reservaInstance?.date}" /></span>
+						<span class="property-value" aria-labelledby="date-label"><g:formatDate date="${reservaInstance?.date}" format="dd/MM/yyyy" /></span>
 					
 				</li>
 				</g:if>
@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="cliente-label" class="property-label"><g:message code="reserva.cliente.label" default="Cliente" /></span>
 					
-						<span class="property-value" aria-labelledby="cliente-label"><g:link controller="cliente" action="show" id="${reservaInstance?.cliente?.id}">${reservaInstance?.cliente?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="cliente-label"><g:link controller="cliente" action="show" id="${reservaInstance?.cliente?.id}">${reservaInstance?.cliente?.nome}</g:link></span>
 					
 				</li>
 				</g:if>

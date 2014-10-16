@@ -58,7 +58,7 @@ class ReservaController {
         }
     }
     
-    def show(Reserva reservaInstance) {
+    def show(Reserva reservaInstance) {        
         respond reservaInstance
     }
 

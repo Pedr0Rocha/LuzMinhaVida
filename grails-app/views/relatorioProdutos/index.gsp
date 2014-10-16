@@ -36,11 +36,11 @@
 				<g:each in="${relatorioProdutosInstanceList}" status="i" var="relatorioProdutosInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${relatorioProdutosInstance.id}">${fieldValue(bean: relatorioProdutosInstance, field: "cliente")}</g:link></td>
+						<td><g:link action="show" id="${relatorioProdutosInstance.id}">${fieldValue(bean: relatorioProdutosInstance.cliente, field: "nome")}</g:link></td>
 					
-						<td><g:formatDate date="${relatorioProdutosInstance.data}" /></td>
+						<td><g:formatDate date="${relatorioProdutosInstance.data}" format="dd/MM/yyyy" /></td>
 					
-						<td>${fieldValue(bean: relatorioProdutosInstance, field: "produto")}</td>
+						<td>${fieldValue(bean: relatorioProdutosInstance.produto, field: "nomeProduto")}</td>
 					
 					</tr>
 				</g:each>

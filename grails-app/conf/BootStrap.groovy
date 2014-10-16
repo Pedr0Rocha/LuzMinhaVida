@@ -18,7 +18,7 @@ class BootStrap {
             new Permiss(nome: type).save(failOnError: true)
         }
 		
-		for (String type in ['1 Estrelas','2 Estrelas','3 Estrelas', '4 Estrelas', '5 Estrelas']) {
+		for (String type in ['1 Estrela','2 Estrelas','3 Estrelas', '4 Estrelas', '5 Estrelas']) {
 			new Aval(estrelas: type).save(failOnError: true)
 		}
 		

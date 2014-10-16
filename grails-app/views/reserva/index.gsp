@@ -24,7 +24,7 @@
 			<thead>
 					<tr>
 					
-						<g:sortableColumn property="date" title="${message(code: 'reserva.date.label', default: 'Date')}" />
+						<g:sortableColumn property="date" title="${message(code: 'reserva.date.label', default: 'Data')}" />
 					
 						<th><g:message code="reserva.cliente.label" default="Cliente" /></th>
 					
@@ -40,9 +40,9 @@
 				<g:each in="${reservaInstanceList}" status="i" var="reservaInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${reservaInstance.id}">${fieldValue(bean: reservaInstance, field: "date")}</g:link></td>
+						<td><g:link action="show" id="${reservaInstance.id}"><g:formatDate date="${reservaInstance?.date}" format="dd/MM/yyyy" /></g:link></td>
 					
-						<td>${fieldValue(bean: reservaInstance, field: "cliente")}</td>
+						<td>${fieldValue(bean: reservaInstance, field: "cliente.nome")}</td>
 					
 						<td>${fieldValue(bean: reservaInstance, field: "numeroPessoas")}</td>
 					
