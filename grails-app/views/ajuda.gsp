@@ -27,10 +27,10 @@
                 </h4><br>
                 <h5 style="margin-left: 40px;">                
                     <p>Para utilizar nosso site em sua totalidade é necessário estar cadastrado.</p><br>
-                    <p>Você pode fazer seu cadastro clicando <a class="controller"><g:link controller="cliente">aqui</g:link></a>. É rapidinho!</p><br>
+                    <p>Você pode fazer seu cadastro clicando <a class="controller"><g:link controller="cliente" action="create">aqui</g:link></a>. É rapidinho!</p><br>
                     <p>Sendo um cliente cadastrado, você poderá fazer a reserva de mesas e de equipamentos de pesca, economizando tempo e aproveitando
                         sua visita ao máximo!</p><br>
-                    <p>Para reservar uma mesa, acesse o menu <i><a class="controller"><g:link controller="reserva">Reservas</g:link></a></i> e clique em <i>Nova Reserva</i>.</p><br>
+                    <p>Para reservar uma mesa, acesse o menu <i><a class="controller"><g:link controller="reserva">reservas</g:link></a></i> e clique em <i>Nova Reserva</i>.</p><br>
                     <p>Escolha a data que deseja reservar e o número de pessoas. Escolha também quantos equipamentos deseja reservar para sua pescaria.</p><br>
                     <p>Após preencher todos os campos, clique em <i>Criar</i>. Pronto, sua reserva foi efetuada! </p><br>
                     <p>Você pode verificar suas reservas pressionando em <i>Lista de Reservas</i>.</p><br>
