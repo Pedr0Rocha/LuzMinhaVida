@@ -41,6 +41,72 @@ class ProdutosController {
         respond produtosInstance
     }
     
+    def search(){
+        if (!request.post) {
+            return
+        }        
+        
+        def todosProdutos = Produtos.findAll()
+        def listaPorNome = []
+        
+        
+        //filtro por nomes
+        for (Produtos prod in todosProdutos){
+            if(prod?.nomeProduto?.contains(params?.nomeProduto)){
+                listaPorNome.add(prod)
+                //  println("ADD LISTA POR NOME")
+                
+            }
+        }
+        println(listaPorNome.size() + " << lista por nome size")
+        
+        // filtro por valor
+        
+        def listaPorValor = []
+        
+        if (!params.valor.equals("")){
+            for (Produtos prod in listaPorNome){
+                if(prod?.valor?.equals(params.valor)){
+                    listaPorValor.add(prod)
+                    // println("ADD LISTA POR VALOR")
+                }
+            }
+        } else {
+            listaPorValor = listaPorNome
+        }
+        
+        println(listaPorValor.size() + " << lista por valor size")
+        
+        // filtro por categoria
+
+        def listaPorCategoria = []
+        if (params?.categoria?.id != '-1'){            
+            for (Produtos prod in listaPorValor){
+                if(prod?.categoria?.id.toString().equals(params?.categoria?.id.toString())){
+                    listaPorCategoria.add(prod)
+                    //println("ADD LISTA POR CATEGORIA") 
+                }
+            }
+        } else {
+            listaPorCategoria = listaPorValor
+        }        
+        
+        def listProd = listaPorCategoria
+        
+        if (!listProd) {
+            flash.message = "Produto Não Encontrado!"  
+            return //[message: 'owners.not.found']
+        }
+        
+        if (listProd.size() > 1) {
+            //[oProduto : produtos]
+            render view: 'listarProdutos', model: [oProduto : listProd]
+        } else {
+            redirect action: 'show', id: listProd[0].id
+        } 
+        
+    }
+    
     def cardap() {
         
         def categorias = CategoriaProdutos.findAll()
@@ -56,35 +122,6 @@ class ProdutosController {
         println(categorias.size())
         render view: 'cardapio', model: [aMatrizCategoria : listaz]
     }
-   
-    
-    def search () {
-        if (!request.post) {
-            return
-        }
-        //def produtos = Produtos.findAllByNomeProduto(params.nomeProduto)
-        def prod2 = Produtos.findAll()
-        def listProd = []
-       
-        for (Produtos pp in prod2){
-            if(pp?.nomeProduto?.contains(params.nomeProduto)){
-                listProd.add(pp)
-            }
-        }
-        
-        if (!listProd) {
-            flash.message = "Produto Não Encontrado!"  
-            return //[message: 'owners.not.found']
-        }
-        
-        if (listProd.size() > 1) {
-            //[oProduto : produtos]
-            render view: 'listarProdutos', model: [oProduto : listProd]
-        } else {
-            redirect action: 'show', id: listProd[0].id
-        }         
-    }
-    
     
     def filtro(){
         if (!request.post) {

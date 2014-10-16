@@ -22,13 +22,15 @@ class ClienteController {
             redirect(action:"show", id: user.id)
         }
         params.max = Math.min(max ?: 10, 100)
-        respond Cliente.list(params), model:[clienteInstanceCount: Cliente.count()]
+        def listao = Cliente.findAllByAtivo(true)
+        [clienteInstanceList: listao]
+        //respond Cliente.list(), model:[clienteInstanceCount: Cliente.count()]
     }
 
     def show(Cliente clienteInstance) {
         respond clienteInstance
     }
-    
+        
     def auth() {
         if(!session.user) {
             redirect(action:"create")
@@ -107,7 +109,7 @@ class ClienteController {
             respond clienteInstance.errors, view:'edit'
             return
         }
-
+        clienteInstance.ativo = true
         clienteInstance.save flush:true
 
         request.withFormat {
@@ -127,7 +129,8 @@ class ClienteController {
             return
         }
 
-        clienteInstance.delete flush:true
+        clienteInstance.ativo = false
+        //clienteInstance.delete flush:true
 
         request.withFormat {
             form multipartForm {

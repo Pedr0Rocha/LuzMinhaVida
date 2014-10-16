@@ -5,6 +5,7 @@ class Usuario {
 	String login
 	String password
 	Permiss permissao
+        boolean ativo = true
         
     static constraints = {
 		login(blank:false, minSize:3, unique:true)

@@ -14,4 +14,8 @@ class Cliente extends Usuario {
 		endereco (blank:false)
 		CEP (blank:false, size:8..8)
     }
+    
+    def ativar(boolean bo){
+        this.ativo = bo
+    }
 }
