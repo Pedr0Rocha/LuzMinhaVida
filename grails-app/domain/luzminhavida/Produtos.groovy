@@ -8,7 +8,7 @@ class Produtos {
 	Boolean mostrarNoCardapio = true
 	
 	static constraints = {
-		nomeProduto(blank: false)
+		nomeProduto(blank: false, unique: true)
 		descricao (blank: false, maxSize: 300)
 		valor (blank: false, matches:"[0-9,]+")
                 categoria (blank: true)

@@ -76,8 +76,8 @@
         <h1></h1>
         <div class="nav" role="navigation">
             <ul>
-              <!--   <li><a class="list" href="${createLink(uri: '/relatorio')}" target="_blank"><g:message code="Relatorio de Produtos"/></a></li> --> 
-                <li><a class="list" href="${createLink(uri: '/produtos/filtro')}" ><g:message code="Relatorio de Produtos"/></a></li>
+                <li><a class="list" href="${createLink(uri: '/relatorioProdutos')}" target="_blank"><g:message code="Relatorio de Produtos"/></a></li> 
+              <!-- <li><a class="list" href="${createLink(uri: '/produtos/filtro')}" ><g:message code="Relatorio de Produtos"/></a></li> -->
 
             </ul>
         </div>
