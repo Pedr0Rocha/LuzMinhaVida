@@ -13,10 +13,12 @@
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
                 <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-                </ul>
-            </div>
-            <div id="list-cliente" class="content scaffold-list" role="main">
-                <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+                <li><g:link class="search" action="search"><g:message code="default.search.label" args="[entityName]" /></g:link></li>
+
+            </ul>
+        </div>
+        <div id="list-cliente" class="content scaffold-list" role="main">
+            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
@@ -41,12 +43,12 @@
 
 
 
-                           <td><g:link action="show" id="${clienteInstance.id}">${fieldValue(bean: clienteInstance, field: "nome")}</g:link></td>
+                            <td><g:link action="show" id="${clienteInstance.id}">${fieldValue(bean: clienteInstance, field: "nome")}</g:link></td>
 
                             <td>${fieldValue(bean: clienteInstance, field: "telefone")}</td>
 
                             <td>${fieldValue(bean: clienteInstance, field: "endereco")}</td>
-                            
+
                             <td>${fieldValue(bean: clienteInstance, field: "CEP")}</td>
 
                         </tr>
