@@ -198,13 +198,13 @@ class ProdutosController {
         }
        
         def listaClientes = [:]
-        for(RelatorioProdutos rel in finalList)
-        if(!listaClientes[rel.cliente]){
-            listaClientes[rel.cliente] = 1
-        } else {
-            listaClientes[rel.cliente] += 1 
+        for(RelatorioProdutos rel in finalList){
+            if(!listaClientes[rel.cliente]){
+                listaClientes[rel.cliente] = 1
+            } else {
+                listaClientes[rel.cliente] += 1 
+            }
         }
-        
         render view: 'relatorio', model: [listaTotal : superList.sort{-it.value}, totalVisu: listaCadaVisu,
             datai : data1.format("dd/MM/yyyy"), dataf : data2.format("dd/MM/yyyy"),
             listaCli : listaClientes.sort{-it.value}, visuTotal: visu]

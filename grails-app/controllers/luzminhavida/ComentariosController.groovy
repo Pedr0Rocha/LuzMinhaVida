@@ -141,4 +141,109 @@ class ComentariosController {
             '*'{ render status: NOT_FOUND }
         }
     }
+    
+        
+    def filtro(){
+        if (!request.post) {
+            return
+        }        
+           
+        // filtro por Avaliacao
+        def comentarios  = Comentarios.findAll()
+        def listaPorNome = []
+        println comentarios.size() + "<comentarios>"
+        for (Comentarios coment in comentarios){
+            if(coment?.cliente?.nome?.contains(params?.clienteNome)){
+                listaPorNome.add(coment)
+                //  println("ADD LISTA POR NOME")
+                
+            }
+        }
+        println listaPorNome.size() + "<listaPorNome>" 
+        def listaPorEstrela = []
+        if (params?.aval?.id != '-1'){            
+            for (Comentarios rel in listaPorNome){
+                println rel?.estrelas?.id.toString() + "<><><><"+params?.aval?.id.toString()
+                if(rel?.estrelas?.id.toString().equals(params?.aval?.id.toString())){
+                    listaPorEstrela.add(rel)
+                    //println("ADD LISTA POR CATEGORIA") 
+                }
+            }
+        } else {
+            listaPorEstrela = comentarios
+        }
+         println listaPorEstrela.size() + "<listaPorEstrela>" 
+        //filtro por data
+        def listaPorData = []
+        if(params.datai.after(new Date()) || params.dataf.after(new Date())){
+            flash.message = "Datas não podem serem maiores que a data atual!"  
+            return //[message: 'owners.not.found']
+        }else if(params.datai.after(params.dataf)){
+            flash.message = "Data Inicial não pode ser maior que final"  
+            return //[message: 'owners.not.found']
+        }else{
+            for(Comentarios rel in listaPorEstrela){
+                if(rel.data.after(params.datai-1) && rel.data.before(params.dataf+1)){
+                    listaPorData.add(rel)
+                }            
+            }
+        }
+          println listaPorData.size() + "<listaPorData>" 
+        def finalList = listaPorData
+        // println(params.datai.toString() + "datai <     dataf > " + params.dataf.toString())
+        relatorio(finalList, params.datai, params.dataf)
+    }
+    
+  
+    def  relatorio(List finalList, Date data1, Date data2){
+        def comentariosPorAval = [:]
+        
+        def avals = Aval.findAll()
+        
+        for (Aval av in avals){
+            comentariosPorAval[av.estrelas] = 0
+        }
+        println comentariosPorAval.size() + "coments por aval"
+        for(Comentarios rel in finalList){
+            if(!comentariosPorAval[rel.estrelas.estrelas]){
+                comentariosPorAval[rel.estrelas.estrelas] = 1
+             
+            }else{
+                comentariosPorAval[rel.estrelas.estrelas] += 1
+
+            }
+        }
+        
+        int visu = finalList.size()
+        
+  
+        def listaAvalPercent = []
+        
+        for(elem in comentariosPorAval.sort{-it.value}){
+            if(visu!=0){
+                listaAvalPercent.add((int)((elem.value/visu) * 100))
+            }else{
+                listaAvalPercent.add(0)
+            }
+        }
+        
+        def listaClientes = [:]
+        
+        for(Comentarios rel in finalList){
+            if(!listaClientes[rel.cliente]){
+                listaClientes[rel.cliente] = 1
+            } else {
+                listaClientes[rel.cliente] += 1 
+            }
+        }
+        def listaClientPercent = []
+        for(elem in listaClientes.sort{-it.value}){
+            listaClientPercent.add((int)((elem.value/visu) * 100))
+        }
+        
+        render view: 'relatorio', model: [listaTotal : comentariosPorAval.sort{-it.value}, lstAvalPercent: listaAvalPercent, totalVisu: visu,
+            lstCliente: listaClientes.sort{-it.value}, lstPercentClient: listaClientPercent, datai : data1.format("dd/MM/yyyy"), dataf : data2.format("dd/MM/yyyy"),
+            listaFinal: finalList ]
+     
+    }
 }
