@@ -34,7 +34,7 @@ class LoginControllerSpec extends Specification {
         when:
             params.login = ""
             params.password = "123"
-            def usuario = new Usuario(params)
+            def usuario = new Usuario(params).save()
             controller.verifica(usuario)
         
         then:
