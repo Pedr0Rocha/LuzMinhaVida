@@ -39,6 +39,7 @@ class ClienteController {
     def create() {
         respond new Cliente(params)
     }
+    
 
     @Transactional
     def save(Cliente clienteInstance) {
@@ -145,5 +146,14 @@ class ClienteController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+    
+    void cadastrar(Cliente clienteInstance){
+        if (clienteInstance == null || clienteInstance.hasErrors()) {
+            render "erro"
+            return
+        }
+        clienteInstance.save flush:true
+        render "salvo"
     }
 }

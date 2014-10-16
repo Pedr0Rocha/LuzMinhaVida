@@ -38,14 +38,14 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'CPF', 'error')} required">
+<!--<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'CPF', 'error')} required">
 	<label for="CPF">
 		<g:message code="cliente.CPF.label" default="CPF" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="CPF" maxlength="12" required="" value="${clienteInstance?.CPF}"/>
 
-</div>
+</div>-->
 
 <div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'telefone', 'error')} required">
 	<label for="telefone">

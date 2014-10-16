@@ -27,7 +27,7 @@
 					
 						<g:sortableColumn property="nome" title="${message(code: 'cliente.nome.label', default: 'Nome')}" />
 					
-						<g:sortableColumn property="CPF" title="${message(code: 'cliente.CPF.label', default: 'CPF')}" />
+						<!-- <g:sortableColumn property="CPF" title="${message(code: 'cliente.CPF.label', default: 'CPF')}" /> -->
 					
 						<g:sortableColumn property="telefone" title="${message(code: 'cliente.telefone.label', default: 'Telefone')}" />
 					
@@ -43,7 +43,7 @@
 					
 						<td><g:link action="show" id="${clienteInstance.id}">${fieldValue(bean: clienteInstance, field: "nome")}</g:link></td>
 					
-						<td>${fieldValue(bean: clienteInstance, field: "CPF")}</td>
+						<!-- <td>${fieldValue(bean: clienteInstance, field: "CPF")}</td> -->
 					
 						<td>${fieldValue(bean: clienteInstance, field: "telefone")}</td>
 					
