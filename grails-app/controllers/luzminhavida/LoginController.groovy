@@ -2,34 +2,37 @@ package luzminhavida
 
 class LoginController {
 
-	def index() {
-		redirect(action:"login")
-	}
+    def index() {
+        redirect(action:"login")
+    }
 
-	def login = {}
+    def login = {}
 
-	def authenticate = {
-		def user = Usuario.findByLoginAndPassword(params.login, params.password)
+    def authenticate = {
+        def user = Usuario.findByLoginAndPassword(params.login, params.password)
 		
-			if(user){
-				session.user = user
-				flash.message = "Bem vindo ${user.nome}!"
-				redirect(uri : "/")
+        if(user){
+            session.user = user
+            flash.message = "Bem vindo ${user.nome}!"
+            RelatorioLogin relLogin = new RelatorioLogin()
+            relLogin.usuario = user  
+            relLogin.save flush:true
+            redirect(uri : "/")
 
-			}else{
-				flash.message = "Desculpe, tente novamente."
-				redirect(action:"login")
-			}
+        }else{
+            flash.message = "Desculpe, tente novamente."
+            redirect(action:"login")
+        }
 		
-	}
+    }
 
-	def logout = {
-		if(session.user){
-			flash.message = "${session.user.nome} desconectado."
-			session.user = null
+    def logout = {
+        if(session.user){
+            flash.message = "${session.user.nome} desconectado."
+            session.user = null
 
-		}
-		redirect(action:"login")
-	}
+        }
+        redirect(action:"login")
+    }
 
 }

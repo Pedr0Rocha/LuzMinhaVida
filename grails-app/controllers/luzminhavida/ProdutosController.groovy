@@ -83,7 +83,7 @@ class ProdutosController {
     }
     
     def filtro(){
-         if (!request.post) {
+        if (!request.post) {
             return
         }        
         
@@ -95,7 +95,7 @@ class ProdutosController {
         for (Produtos prod in todosProdutos){
             if(prod?.nomeProduto?.contains(params?.nomeProduto)){
                 listaPorNome.add(prod)
-              //  println("ADD LISTA POR NOME")
+                //  println("ADD LISTA POR NOME")
                 
             }
         }
@@ -109,7 +109,7 @@ class ProdutosController {
             for (Produtos prod in listaPorNome){
                 if(prod?.valor?.equals(params.valor)){
                     listaPorValor.add(prod)
-                   // println("ADD LISTA POR VALOR")
+                    // println("ADD LISTA POR VALOR")
                 }
             }
         } else {
@@ -135,13 +135,34 @@ class ProdutosController {
         println(listaPorCategoria.size() + " << lista por categoria size")
         Date
         // filtro por data
-        println((params.datai - params.dataf) +" ! AJHISBGDUAHGUOIHASIYFRIUYASOHJFIPSGHÒFDJA")
-        if (params.datai.after(params.dataf)){
-            println("deu certo")
-        } else {
-            println("deu ruim")
+        // println((params.datai - params.dataf) +" ! AJHISBGDUAHGUOIHASIYFRIUYASOHJFIPSGHÒFDJA")
+        def acessosProd      = RelatorioProdutos.findAll()
+        def listaAcessosProd = []
+        if(params.datai.after(new Date()) || params.dataf.after(new Date())){
+            flash.message = "Datas não podem serem maiores que a data atual!"  
+            return //[message: 'owners.not.found']
+        }else if(!params.datai.after(params.dataf)){
+           
+            for(RelatorioProdutos rel in acessosProd){
+                if(rel.data.after(params.datai-1) && rel.data.before(params.dataf+1)){
+                    listaAcessosProd.add(rel)
+                }            
+            }
+        }else{
+            flash.message = "Data Inicial não pode ser maior que final"  
+            return //[message: 'owners.not.found']
         }
-        println(params.datai.toString() + "datai <     dataf > " + params.dataf.toString())
+        def finalList = []
+        for(RelatorioProdutos rel in listaAcessosProd){
+            for(Produtos prod in listaPorCategoria){
+                if(rel.produto.equals(prod)){
+                    finalList.add(rel)
+                }
+            }
+        }
+        println(listaAcessosProd.size()+ " << listaAcessosProd size>")
+        println(finalList.size()+ " << final size>")
+       // println(params.datai.toString() + "datai <     dataf > " + params.dataf.toString())
         
     }
     
