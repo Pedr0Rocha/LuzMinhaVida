@@ -20,14 +20,14 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'permissao', 'error')} ">
+<!--<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'permissao', 'error')} ">
 	<label for="permissao">
 		<g:message code="cliente.permissao.label" default="Permissao" />
 		
 	</label>
 	<g:select id="permissao" name="permissao.id" from="${luzminhavida.Permiss.list()}" optionKey="id" value="${clienteInstance?.permissao?.id}" class="many-to-one" noSelection="['null': '']"/>
 
-</div>
+</div>-->
 
 <div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'nome', 'error')} required">
 	<label for="nome">

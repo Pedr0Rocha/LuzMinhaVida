@@ -112,7 +112,7 @@
         <div class="nav" role="navigation">
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" controller = "login" action="logout"><g:message code="Logout" args="[entityName]" /></g:link></li>
+                <li><g:link class="list" controller = "login" action="logout"><g:message code="Login/Logout" args="[entityName]" /></g:link></li>
                 <li><a class="help" href="${createLink(uri: '/ajuda')}"><g:message code="Ajuda" /></a></li>   
             </ul>
         </div>
